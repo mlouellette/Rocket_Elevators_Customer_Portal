@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Home Page";
+    var customer = ViewBag.Customer;
+    var buildings = ViewBag.Building;
+
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<center><h1>Create new Interventions</h1></center>
+<br />
+<form>
+    <div class="form-group">
+        <label for="InputCustomer">Customer</label>
+        <select name="customer" class="form-control" id="customer" disabled>
+            <option value=@customer.CustomerID>@customer.CustomerID</option>
+           
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="InputBuilding">Building</label>
+        <select name="building" class="form-control" id="building">
+            <option value="">Please select</option>
+            @foreach (var building in buildings)
+            {
+                <option value="@building.id">@building.id</option>
+            }
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="InputBattery">Battery</label>
+        <select name="battery" class="form-control" id="battery">
+            <option>select battery</option>
+            
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="InputColumn">Column</label>
+        <select name="column" class="form-control" id="column">
+            <option>select column</option>
+            
+
+        </select>
+    </div>
+        <div class="form-group">
+        <label for="InputElevator">Elevator</label>
+        <select name="elevator" class="form-control" id="elevator">
+            <option>select elevator</option>
+            
+
+        </select>
+    </div>
+
+    <br /><br />
+
+    <button type="button" id="submit" class="btn btn-danger btn-lg">Submit</button>
+
+</form>
+
+<script type="text/javascript">
+
+
+            $(document).ready(function () {
+
+                let building = $('#building').html();
+                let battery = $('#battery').html();
+                let column = $('#column').html();
+                let elevator = $('#elevator').html();
+
+                // Fetch data selector based on customer login, on change and with de value ID, appends options to the selector below
+                $('#building').change(function () {
+
+                    buildingSelected = $('#building :selected').text();
+
+
+                    $.getJSON("https://localhost:7234/api/batteries/building/" + buildingSelected, function (response) {
+                        console.log(response)
+
+                        if (response) {
+                            $.each(response, function (index, value) {
+                                var option = '<option value="' + value.id + '">' + value.id + '</option>';
+                                $(option).appendTo("#battery")
+                            });
+                        }
+
+                    });
+
+                });
+
+
+                // Fetch data selector based on customer login, on change and with de value ID, appends options to the selector below
+                $('#battery').change(function () {
+
+                    batterySelected = $('#battery :selected').text();
+
+
+                    $.getJSON("https://localhost:7234/api/columns/battery/" + batterySelected, function (response) {
+                        console.log(response)
+
+                        if (response) {
+                            $.each(response, function (index, value) {
+                                var option = '<option value="' + value.id + '">' + value.id + '</option>';
+                                $(option).appendTo("#column")
+                            });
+                        }
+
+                    });
+
+                });
+
+                // Fetch data selector based on customer login, on change and with de value ID, appends options to the selector below
+                $('#column').change(function () {
+
+                    columnSelected = $('#column :selected').text();
+
+                    $.getJSON("https://localhost:7234/api/elevators/column/" + columnSelected, function (response) {
+                        console.log(response)
+
+                        if (response) {
+                            $.each(response, function (index, value) {
+                                var option = '<option value="' + value.id + '">' + value.id + '</option>';
+                                $(option).appendTo("#elevator")
+                            });
+                        }
+
+                    });
+
+                });
+
+
+            });
+
+           
+
+</script>
+
+
+<script>
+    $('#submit').click(function () {
+
+
+        var intervention = {
+            Author: @customer.CustomerID,
+            CustomerID: @customer.CustomerID,
+            BuildingID: $('#building').val(),
+            BatteryID: $('#battery').val(),
+            ColumnID: $('#column').val(),
+            ElevatorID: $('#elevator').val(),
+           
+        };
+
+
+        $.post("/Intervention/newIntervention", intervention)
+            .done(function (data) {
+                alert("Your intervention has been submitted!");
+               // window.location.href = "\Home\Intervention.cshtml";
+            });
+
+    });
+
+</script>
+   

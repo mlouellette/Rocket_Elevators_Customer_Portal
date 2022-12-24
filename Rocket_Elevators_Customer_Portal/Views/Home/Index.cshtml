@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var customer = ViewBag.Customer;
+}
+
+<div class="text-center">
+    <h2 class="display-4">Welcome to Rocket Elevators</h2>
+    <p>Your are the customer ID No : </p>
+    <h1>@customer.CustomerID</h1>
+</div>

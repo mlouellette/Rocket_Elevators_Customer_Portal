@@ -1,0 +1,197 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    var customers = ViewBag.Customer;
+    var buildings = ViewBag.Building;
+    var batteries = ViewBag.Battery;
+    var columns = ViewBag.Column;
+    var elevators = ViewBag.Elevator;
+    
+
+}
+
+<center><h1>Products</h1></center>
+<br />
+
+<div class="card">
+    <h5 class="card-header">Buildings</h5>
+    <div class="card-body" id="buildings">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Admin Name</th>
+                    <th scope="col">Contact Email</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var building in buildings)
+                    {
+                        <th scope="row">@building.id</th>
+                    }
+                    @foreach (var building in buildings)
+                    {
+                        <td>@building.addressBuilding</td>
+                    }
+                    @foreach (var building in buildings)
+                    {
+                        <td>@building.FullNameBuildingAdmin</td>
+                    }
+                     @foreach (var building in buildings)
+                    {
+                        <td>@building.EmailAdminBuilding</td>
+                    }
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<br />
+
+
+    <h5 class="card-header">Batteries</h5>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Last inspection</th>
+                    <th scope="col"># Building</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var battery in batteries)
+                    {
+                        <th scope="row">@battery.id</th>
+                    }
+                    @foreach (var battery in batteries)
+                    {
+                        <td>@battery.battery_type</td>
+                    }
+                    @foreach (var battery in batteries)
+                    {
+                        <td>@battery.status</td>
+                    }
+                    @foreach (var battery in batteries)
+                    {
+                        <td>@battery.date_last_inspection</td>
+                    }
+                    @foreach (var battery in batteries)
+                    {
+                        <td>@battery.building_id</td>
+                    }
+
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+<br />
+
+<h5 class="card-header">Columns</h5>
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col"># Id</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var column in columns)
+                {
+                    <th scope="row">@column.id</th>
+                }
+                @foreach (var column in columns)
+                {
+                    <td>@column.column_type</td>
+                }
+                @foreach (var column in columns)
+                {
+                    <td>@column.status</td>
+                }
+                @foreach (var column in columns)
+                {
+                    <td>@column.battery_id</td>
+                }
+
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+</div>
+
+
+<br />
+
+<h5 class="card-header">Elevators</h5>
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Model</th>
+                <th scope="col">Status</th>
+                <th scope="col">Last inspection</th>
+                <th scope="col"># column</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var elevator in elevators)
+                {
+                    <th scope="row">@elevator.id</th>
+                }
+                @foreach (var elevator in elevators)
+                {
+                    <td>@elevator.model</td>
+                }
+                @foreach (var elevator in elevators)
+                {
+                    <td>@elevator.elevator_status</td>
+                }
+                @foreach (var elevator in elevators)
+                {
+                    <td>@elevator.date_last_inspection</td>
+                }
+                @foreach (var elevator in elevators)
+                {
+                    <td>@elevator.column_id</td>
+                }
+
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+</div>
