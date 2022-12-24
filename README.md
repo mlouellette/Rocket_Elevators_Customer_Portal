@@ -8,7 +8,7 @@ This project is a Customer Portal using APS.NET MVC framework, Html/css and Java
 
 # Usage 
 
-Made with Visual Studio, it preferable you download visual studio and open by clicking the following file : ` Rocket_Elevators_Customer_Portal.sln `
+Made with Visual Studio, it is preferable you download visual studio and open by clicking the following file : ` Rocket_Elevators_Customer_Portal.sln `
 
 It is also needed to run the dotnet server with the following repository : ` https://github.com/mlouellette/Rocket_Elevators_API_REST `
 
