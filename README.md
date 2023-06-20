@@ -27,6 +27,8 @@ The Create button leads you to a create new intervention form.
 
 The product page is displaying the list of product owned and useful details of the customer logged in.
 
+## Seeding database
+- https://github.com/mlouellette/Rocket-Elevators-Foundation
 
 ## Presentation video
 
