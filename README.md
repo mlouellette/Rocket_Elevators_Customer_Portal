@@ -1,3 +1,7 @@
+## Presentation video
+
+https://vimeo.com/784067269 
+
 ## Rocket_Elevators_Customer_Portal
 
 Rocket Elevators now has a website which, in addition to showcasing its products, serves as a management platform for its employees. 
@@ -30,6 +34,3 @@ The product page is displaying the list of product owned and useful details of t
 ## Seeding database
 - https://github.com/mlouellette/Rocket-Elevators-Foundation
 
-## Presentation video
-
-https://vimeo.com/784067269 
